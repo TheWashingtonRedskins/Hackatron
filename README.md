@@ -25,6 +25,7 @@ Components (priority order):
   - [ ] Competitive elements (leaderboard, etc)
   - [ ] Integration with devpost / SSO / project "Acknoledgements" list
   - [ ] Testing
+  - [ ] Admin panel
 
 UI Design Goals
 ===============

@@ -17,3 +17,4 @@ iron:router
 accounts-github
 splendido:accounts-meld
 coffeescript
+meteorhacks:subs-manager

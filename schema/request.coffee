@@ -10,7 +10,7 @@
 # This is file #1 created at 11:27AM, the first day (night, really) of MHacks.
 # -> We are currently waiting for pizza.
 
-Requests = new SimpleSchema
+RequestSchema = new SimpleSchema
   created:
     label: "Date request was created."
     type: Date
@@ -60,3 +60,6 @@ Requests = new SimpleSchema
     type: Number
     min: 0
     max: 3
+
+@Requests = new Mongo.Collection "requests"
+Requests.attachSchema RequestSchema
