@@ -25,6 +25,11 @@ EventSchema = new SimpleSchema
   website:
     label: "URL to the website."
     type: String
+  icon:
+    label: "Icon URL."
+    type: String
+    # Shouldn't be but ok
+    optional: true
 
 @Events = new Mongo.Collection "events"
 Events.attachSchema EventSchema

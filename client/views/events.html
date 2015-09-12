@@ -1,0 +1,32 @@
+<!--
+███████╗██╗   ██╗███████╗███╗   ██╗████████╗███████╗
+██╔════╝██║   ██║██╔════╝████╗  ██║╚══██╔══╝██╔════╝
+█████╗  ██║   ██║█████╗  ██╔██╗ ██║   ██║   ███████╗
+██╔══╝  ╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║   ╚════██║
+███████╗ ╚████╔╝ ███████╗██║ ╚████║   ██║   ███████║
+╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝
+
+Show a list of events to chose from.
+
+This is file #8 created at 2:41AM, the first day of Mhacks.
+-> "It's supposed to be better for your hands than dvorjak." - Ethan
+-->
+
+<template name="events">
+<div id="eventsPage">
+  <div class="row">
+    <h1>SELECT YOUR EVENT</h1>
+    {{#each events}}
+      {{> eventButton}}
+    {{/each}}
+  </div>
+</div>
+</template>
+
+<template name="eventButton">
+  <div class="cta_container hint--bottom" data-hint="{{name}}">
+    <div class="cta_button">
+      <img src="{{icon}}"/>
+    </div>
+  </div>
+</template>

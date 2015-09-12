@@ -1,0 +1,56 @@
+//  ██████╗████████╗ █████╗
+//  ██╔════╝╚══██╔══╝██╔══██╗
+//  ██║        ██║   ███████║
+//  ██║        ██║   ██╔══██║
+//  ╚██████╗   ██║   ██║  ██║
+//
+//
+// Call-to-action style buttons (spinning circles).
+//
+// This is file #7 created for MHacks, first day, time: 2:40am.
+// -> "You could just use find and replace." - Ethan
+
+.cta_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta_button {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: #efefef;
+  border: 3px solid #ed1c5b;
+  border-radius: 50%;
+  img {
+    width: 80px;
+    height: 80px;
+  }
+  &:after{
+    content: "";
+    position: absolute;
+    top: 7%;
+    left: 7%;
+    border-radius: 50%;
+    border-top: 1px solid transparent;
+    border-right: 1px solid #ed1c5b;
+    border-bottom: 1px solid transparent;
+    border-left: 1px solid #ed1c5b;
+    width: 85%;
+    height: 85%;
+    transition: border 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), transform 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transform: rotate(45deg);
+    backface-visibility: hidden;
+  }
+  &:hover{
+    &:after{
+      border: 1px solid #ed1c5b;
+      transform: rotate(135deg);
+    }
+  }
+}

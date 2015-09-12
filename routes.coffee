@@ -13,7 +13,7 @@
 Router.configure
   layoutTemplate: 'ApplicationLayout'
   waitOn: ->
-    return [] unless Meteor.client
+    return [] unless Meteor.isClient
     Meteor.subscribe "events"
 
 # Check if the event still exists and if not redirect
@@ -25,10 +25,16 @@ eventRedirect = (ctx)->
     eve = Events.findOne {_id: selEvent}
     if eve? and eve.start.getTime() < now and eve.end.getTime() > now
       return false
+  events = Events.find().fetch()
+  console.log events
+  if events.length is 1
+    Session.set "selectedEvent", events[0]._id
+    return false
+  Session.set "selectedEvent", null
   ctx.redirect '/events'
   true
 
-# Pick a logical place to go without any particular goal or context.
+# Pick a logical place to go without any particular goal or context
 redirectLogically = ->
   # This already checks if the event is valid
   return if eventRedirect @
@@ -41,4 +47,6 @@ Router.route '/',
 
 Router.route '/events',
   action: ->
+    if Session.get("selectedEvent")?
+      return redirectLogically.call @
     @render "events"
