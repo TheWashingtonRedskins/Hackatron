@@ -1,8 +1,7 @@
 # ██████╗  ██████╗ ██╗   ██╗████████╗███████╗███████╗
 # ██╔══██╗██╔═══██╗██║   ██║╚══██╔══╝██╔════╝██╔════╝
 # ██████╔╝██║   ██║██║   ██║   ██║   █████╗  ███████╗
-# ██╔══██╗██║   ██║██║   ██║   ██║   ██╔══╝  ╚════██║
-# ██║  ██║╚██████╔╝╚██████╔╝   ██║   ███████╗███████║
+# ██╔══██╗██║   ██║██║   ██║   ██║   ██╔══╝  ╚════██║ # ██║  ██║╚██████╔╝╚██████╔╝   ██║   ███████╗███████║
 #
 # Configure routes in iron-router.
 #
@@ -16,37 +15,37 @@ Router.configure
     return [] unless Meteor.isClient
     Meteor.subscribe "events"
 
+Router.onBeforeAction ->
+  unless currentEventValid()
+    return @render "events"
+
+  # TODO: check if URL actually needs auth
+  unless Meteor.userId()?
+    @render 'Login'
+  else
+    @next()
+  return
+
 # Check if the event still exists and if not redirect
 # usage: return if eventRedirect @
-eventRedirect = (ctx)->
+currentEventValid = ->
   selEvent = Session.get "selectedEvent"
   if selEvent?
     now = new Date().getTime()
     eve = Events.findOne {_id: selEvent}
     if eve? and eve.start.getTime() < now and eve.end.getTime() > now
-      return false
+      return true
   events = Events.find().fetch()
-  console.log events
   if events.length is 1
     Session.set "selectedEvent", events[0]._id
-    return false
+    return true
   Session.set "selectedEvent", null
-  ctx.redirect '/events'
-  true
-
-# Pick a logical place to go without any particular goal or context
-redirectLogically = ->
-  # This already checks if the event is valid
-  return if eventRedirect @
-  user = Meteor.user()
-  if !user?
-    return
+  false
 
 Router.route '/',
-  action: redirectLogically
-
-Router.route '/events',
   action: ->
-    if Session.get("selectedEvent")?
-      return redirectLogically.call @
-    @render "events"
+    @redirect "/requests"
+
+Router.route "/requests",
+  action: ->
+    @render "requests"

@@ -19,5 +19,7 @@ Template.events.helpers
     Events.find()
 
 Template.eventButton.events
-  "click .cta_container": ->
+  "click .cta_button": ->
     Session.set("selectedEvent", @_id)
+    # logically redirect
+    Router.go "/"

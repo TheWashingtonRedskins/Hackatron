@@ -16,15 +16,17 @@ This is file #8 created at 2:41AM, the first day of Mhacks.
 <div id="eventsPage">
   <div class="row">
     <h1>SELECT YOUR EVENT</h1>
+    <div class="cta_bottom">
     {{#each events}}
       {{> eventButton}}
     {{/each}}
+    </div>
   </div>
 </div>
 </template>
 
 <template name="eventButton">
-  <div class="cta_container hint--bottom" data-hint="{{name}}">
+  <div class="hint--bottom" data-hint="{{name}}">
     <div class="cta_button">
       <img src="{{icon}}"/>
     </div>

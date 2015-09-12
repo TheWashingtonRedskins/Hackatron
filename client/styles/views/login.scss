@@ -1,0 +1,23 @@
+// ██╗      ██████╗  ██████╗ ██╗███╗   ██╗
+// ██║     ██╔═══██╗██╔════╝ ██║████╗  ██║
+// ██║     ██║   ██║██║  ███╗██║██╔██╗ ██║
+// ██║     ██║   ██║██║   ██║██║██║╚██╗██║
+// ███████╗╚██████╔╝╚██████╔╝██║██║ ╚████║
+// ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝╚═╝  ╚═══╝
+//
+// Sign into the site.
+//
+// This is file #? created at 4:00AM, the first day of MHacks.
+//  -> Gabe Newell...
+
+#loginPage {
+  padding-top: 50px;
+  text-align: center;
+  h1 {
+    width: 100%;
+  }
+  .cta_button {
+    margin: 20px;
+    margin-bottom: 0;
+  }
+}

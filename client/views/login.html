@@ -1,0 +1,30 @@
+<!--
+██╗      ██████╗  ██████╗ ██╗███╗   ██╗
+██║     ██╔═══██╗██╔════╝ ██║████╗  ██║
+██║     ██║   ██║██║  ███╗██║██╔██╗ ██║
+██║     ██║   ██║██║   ██║██║██║╚██╗██║
+███████╗╚██████╔╝╚██████╔╝██║██║ ╚████║
+╚══════╝ ╚═════╝  ╚═════╝ ╚═╝╚═╝  ╚═══╝
+
+This is file #? created at 3:57AM, the first day of MHacks 6.
+-> Git will LITERALLY dig up your file.
+-->
+
+<template name="login">
+<div id="loginPage">
+  <div class="row">
+    <h1>PLEASE SIGN IN</h1>
+    <div class="cta_container">
+    {{#each services}}
+      {{> loginServiceButton}}
+    {{/each}}
+    </div>
+  </div>
+</div>
+</template>
+
+<template name="loginServiceButton">
+<div class="cta_button">
+  <i class="fa fa-{{icon}}" style="font-size:80px"></i>
+</div>
+</template>
