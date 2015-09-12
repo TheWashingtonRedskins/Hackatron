@@ -7,6 +7,13 @@
 meteor-platform
 autopublish
 insecure
-infinitedg:gsap
 sanjo:jasmine
 aldeed:collection2
+accounts-base
+accounts-facebook
+accounts-twitter
+accounts-google
+iron:router
+accounts-github
+splendido:accounts-meld
+coffeescript
