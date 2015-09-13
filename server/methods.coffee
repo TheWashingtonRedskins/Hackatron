@@ -6,9 +6,14 @@ Meteor.methods
     req = getActiveRequest(uid)
     if !req?
       throw new Meteor.Error "cant-find", "Cannot find a active request."
-    if req.state is 1
+    if req.state isnt 0
       throw new Meteor.Error "cant-cancel", "You cannot cancel once someone is coming to help."
     Requests.update {_id: req._id}, {$set: {state: 3}}, {validate: false}
+    if req.phone and req.phone.length > 2 and twilio?
+      console.log "Sending canceled SMS to #{req.phone}"
+      twilio.sendSMS
+        to: req.phone
+        body: "You've canceled your request. Have a great hackathon!"
   "setCurrentEvent": (eid)->
     uid = @userId
     if !uid?
@@ -33,4 +38,10 @@ Meteor.methods
     areq = getActiveRequest(uid)
     if areq?
       throw new Meteor.Error "active", "You already have an active request."
+    console.log "#{user.profile.name} accepted request #{req._id}"
     Requests.update {_id: rid}, {$set: {state: 1}, $push: {responders: uid}}
+    if req.phone and req.phone.length > 2 and twilio?
+      console.log "Sending accepted SMS to #{req.phone}"
+      twilio.sendSMS
+        to: req.phone
+        body: "#{user.profile.name} is on the way to answer your question!"

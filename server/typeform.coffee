@@ -152,6 +152,11 @@ Router.route '/api/tfhook', ->
 
     console.log "Incoming question: #{JSON.stringify req}"
     Requests.insert req, {validate: false}
+    if req.phone and req.phone.length > 2 and twilio?
+      console.log "Sending hello SMS to #{req.phone}"
+      twilio.sendSMS
+        to: req.phone
+        body: "Hey #{user.profile.name}! Your question, \"#{req.description}\ about #{req.tags.join(", ")} has been submitted. We'll let you know when a mentor is coming."
   else
     console.log "Invalid request: #{JSON.stringify body}"
 
