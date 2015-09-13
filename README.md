@@ -34,6 +34,8 @@ Clean, minimalistic, easy to use. No page reloads. Responsive. Any size
 screen.
 
 Thanks
+======
+
  - Robot icon used in logo by [Jean-Phillippe Cabaroc](ihttps://thenounproject.com/cabaroc/), FR
  - Card layout inspired by [Nikolay Talanov](http://codepen.io/suez/)'s Delivery Card Animation
  - Loading animation from [Natalia Betancur](http://codepen.io/Nnatt/pen/RWWBKm)
