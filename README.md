@@ -1,7 +1,7 @@
 Hackatron: the hackathon companion
 ==================================
-
-![](http://mhacks.org/images/mhacks_logo.jpg)
+![hackatron](https://raw.githubusercontent.com/TheWashingtonRedskins/Hackatron/bd01b6a236f2cfbef32f6c39239940b453fd5dd1/public/images/hackatron.png)
+![MHacks 6](http://mhacks.org/images/mhacks_logo.jpg)
 
 Hackatron is a works-everywhere ultra-portable social app for helping
 others and getting help at hackathon events.
@@ -20,7 +20,7 @@ Components (priority order):
   - [ ] Respond to help request / request lifecycle
   - [ ] Store request history on an account / SSO
   - [ ] Point/reward system
-  - [ ] Animations / "sexiness factor" pass
+  - [x] Animations / "sexiness factor" pass
   - [ ] Video display via odroid / RPI
   - [ ] Competitive elements (leaderboard, etc)
   - [ ] Integration with devpost / SSO / project "Acknoledgements" list
