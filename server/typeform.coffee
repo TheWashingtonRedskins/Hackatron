@@ -34,6 +34,9 @@ tagOptions = [
   "Cloud"
   "Node"
   "Oculus"
+  "Embedded"
+  "Arduino"
+  "Electrical"
 ]
 tagOptionsTF = []
 for opt in tagOptions
@@ -65,10 +68,11 @@ unless process.env.TYPEFORM_API?
         tags: ["question"]
       }
       {
-        type: "dropdown"
+        type: "multiple_choice"
         question: "Generally, what kind of project are you making?"
-        choices: [{label: "Web"}, {label: "iOS"}, {label: "Android"}, {label: "Desktop"}, {label: "Games/VR"}, {label: "Other"}]
+        choices: [{label: "Web"}, {label: "iOS"}, {label: "Android"}, {label: "Desktop"}, {label: "Games/VR"}, {label: "Other"}, {label: "Hardware"}]
         required: true
+        allow_multiple_selections: false
         tags: ["major_tags"]
       }
       {
