@@ -20,14 +20,6 @@ RequestSchema = new SimpleSchema
     type: Number
     min: 0
     max: 3
-    autoValue: ->
-      if @isInsert
-        return 0
-      else if @isUpsert
-        return { $setOnInsert: 0 }
-      else
-        @unset()
-      return
   finished:
     label: "Date request was finished/canceled."
     optional: true
