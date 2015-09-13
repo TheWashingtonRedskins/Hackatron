@@ -38,8 +38,8 @@ RequestSchema = new SimpleSchema
   tags:
     label: "List of tags (technologies) the user is asking about."
     type: [String]
-    min: 1
-    max: 5
+    minCount: 1
+    maxCount: 5
   uid:
     label: "The user who created the request."
     type: String
@@ -60,6 +60,11 @@ RequestSchema = new SimpleSchema
     type: Number
     min: 0
     max: 3
+  description:
+    label: "Short description of the problem."
+    type: String
+    min: 10
+    max: 140
 
 @Requests = new Mongo.Collection "requests"
 Requests.attachSchema RequestSchema

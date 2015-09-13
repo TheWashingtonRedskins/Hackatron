@@ -14,17 +14,17 @@ This is file #? created at 3:57AM, the first day of MHacks 6.
 <div id="loginPage">
   <div class="row">
     <h1>PLEASE SIGN IN</h1>
-    <div class="cta_container">
     {{#each services}}
+    <div class="cta_container">
       {{> loginServiceButton}}
-    {{/each}}
     </div>
+    {{/each}}
   </div>
 </div>
 </template>
 
 <template name="loginServiceButton">
 <div class="cta_button">
-  <i class="fa fa-{{icon}}" style="font-size:80px"></i>
+  <img src="/images/{{icon}}.png"/>
 </div>
 </template>

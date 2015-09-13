@@ -22,3 +22,7 @@ insecure
 fortawesome:fontawesome
 service-configuration
 kevohagan:sweetalert
+meteorhacks:fast-render
+momentjs:moment
+reywood:publish-composite
+http

@@ -1,0 +1,149 @@
+<!--
+██████╗ ███████╗ ██████╗ ██╗   ██╗███████╗███████╗████████╗███████╗
+██╔══██╗██╔════╝██╔═══██╗██║   ██║██╔════╝██╔════╝╚══██╔══╝██╔════╝
+██████╔╝█████╗  ██║   ██║██║   ██║█████╗  ███████╗   ██║   ███████╗
+██╔══██╗██╔══╝  ██║▄▄ ██║██║   ██║██╔══╝  ╚════██║   ██║   ╚════██║
+██║  ██║███████╗╚██████╔╝╚██████╔╝███████╗███████║   ██║   ███████║
+╚═╝  ╚═╝╚══════╝ ╚══▀▀═╝  ╚═════╝ ╚══════╝╚══════╝   ╚═╝   ╚══════╝
+
+Request list view template.
+
+File #? created at 11:35am on the first day of MHacks.
+-> Just woke up, kinda hungry. Thinking about crashing the dining courts.
+-->
+
+<template name="requests">
+<div id="requestsView">
+  <div class="row helpToggle">
+    <div class="switch-button" style="margin: 0 auto;">
+      <span class="active" style="{{#if giveHelp}}left: 50%;{{else}}left: 0;{{/if}}"></span>
+      <button class="switch-button-case left {{#unless giveHelp}}active-case{{/unless}}">
+        Get Help
+      </button>
+      <button class="switch-button-case right {{#if giveHelp}}active-case{{/if}}">
+        Help Out
+      </button>
+    </div>
+  </div>
+  {{#each requests}}
+  {{> requestCard}}
+  {{/each}}
+</div>
+</template>
+
+<template name="requestCard">
+<div class="cardContainer">
+  <section class="card theme-blue" data-color="00A0B0">
+    <section class="card__part card__part-1">
+      <div class="card__part__inner">
+        <header class="card__header">
+          <div class="card__header__close-btn"></div>
+          <span class="card__header__id">{{tagsFormatted}}</span>
+          <span class="card__header__price">#{{idShort}}</span>
+        </header>
+        <div class="card__stats">
+          <div class="card__stats__item card__stats__item--req">
+            <p class="card__stats__type">Created</p>
+            <span class="card__stats__value">{{timeAgo true}}</span>
+          </div>
+          <div class="card__stats__item card__stats__item--pledge">
+            {{#if bounty}}
+            <p class="card__stats__type">Bounty</p>
+            <span class="card__stats__value">{{bounty}}</span>
+            {{/if}}
+          </div>
+          <div class="card__stats__item card__stats__item--weight">
+            <p class="card__stats__type">Difficulty</p>
+            <span class="card__stats__value">{{reqDiff}}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="card__part card__part-2">
+      <div class="card__part__side m--back">
+        <div class="card__face__colored-inner">
+          {{#each tags}}
+          <p>{{this}}</p>
+          {{/each}}
+        </div>
+        <div class="card__part__inner card__face">
+          <div class="card__face__colored-side">
+          </div>
+          <h3 class="card__face__price">{{card.price}}</h3>
+          <div class="card__face__from-to">
+            <p>{{description}}</p>
+          </div>
+          <div class="card__face__stats card__face__stats--req">
+            Created
+            <p>{{timeAgo true}}</p>
+          </div>
+          <div class="card__face__stats card__face__stats--pledge">
+            {{#if bounty}}
+            Bounty
+            <p>{{bounty}}</p>
+            {{/if}}
+          </div>
+          <div class="card__stats__difficulty card__face__stats card__face__stats--weight">
+            Difficulty
+            <p class="card__face__stats__weight">
+            <span>{{reqDiff}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card__part__side m--front">
+        <div class="card__sender">
+          <h4 class="card__sender__heading">Requester</h4>
+          <div class="card__sender__img-cont">
+            <div class="card__sender__img-cont__inner">
+              <img src="{{requestor.profile.avatar}}" class="card__sender__img" />
+            </div>
+          </div>
+          <div class="card__sender__name-and-rating">
+            <p class="card__sender__name">{{requestor.profile.name}}</p>
+          </div>
+        </div>
+        <div class="card__description {{#unless responders.length}}card__description__wider{{/unless}}">
+          <h4 class="card__description__heading">Description</h4>
+          {{description}}
+        </div>
+        {{#if responders.length}}
+        <div class="card__responder card__sender" style="float:right; margin-right: 10px"> <!-- has-responder -->
+          <h4 class="card__sender__heading">Responder</h4>
+          <div class="card__sender__img-cont">
+            <div class="card__sender__img-cont__inner">
+              <img src="{{responder[0].profile.avatar}}" class="card__sender__img" />
+            </div>
+          </div>
+          <div class="card__sender__name-and-rating">
+            <p class="card__sender__name">{{responder[0].profile.name}}</p>
+          </div>
+        </div>
+        {{/if}}
+        <div class="card__from-to">
+          <div class="card__from-to__inner">
+            <div class="card__text card__text--left">
+              <p class="card__text__heading">Location</p>
+              <p class="card__text__middle">{{location}}</p>
+            </div>
+          </div>
+        </div>
+        <section class="card__part card__part-3">
+          <div class="card__part__side m--back"></div>
+          <div class="card__part__side m--front">
+            <section class="card__part card__part-4">
+              <div class="card__part__side m--back"></div>
+              <div class="card__part__side m--front" style="padding:0">
+                <button type="button" class="card__request-btn" style="width:95%;margin-left:auto;margin-right:auto;display:block">
+                  <span class="card__request-btn__text-1">Request</span>
+                  <span class="card__request-btn__text-2">Start</span>
+                </button>
+              </div>
+            </section>
+          </div>
+        </section>
+      </div>
+    </section>
+  </section>
+</div>
+</template>

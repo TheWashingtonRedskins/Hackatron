@@ -12,3 +12,14 @@
 #  -> People who can't use git (the shell in particular) are idiots.
 
 Meteor.publish "events", -> Events.find()
+Meteor.publishComposite "requests",
+  find: ->
+    Requests.find()
+  children: [
+    {
+      find: (request)->
+        ids = _.clone request.responders
+        ids.push request.uid
+        Meteor.users.find {_id: {$in: ids}}, {fields: {profile: 1}}
+    }
+  ]
