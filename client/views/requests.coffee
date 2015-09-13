@@ -13,7 +13,7 @@
 
 Template.requests.helpers
   "requests": ->
-    Requests.find()
+    Requests.find({state: 0})
   "giveHelp": ->
     Session.get "giveHelp"
   "hasRequests": ->
