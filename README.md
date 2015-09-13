@@ -37,3 +37,7 @@ Thanks
 =====
  - Robot icon used in logo by [Jean-Phillippe Cabaroc](ihttps://thenounproject.com/cabaroc/), FR
  - Card layout inspired by [Nikolay Talanov](http://codepen.io/suez/)'s Delivery Card Animation
+ - Loading animation from [Natalia Betancur](http://codepen.io/Nnatt/pen/RWWBKm)
+ - Switch button from [Nicolas Lanthemann](http://codepen.io/vanderlanth/)
+ - Social media buttons from [Dominic Magnifico](http://codepen.io/magnificode/)
+ - Social media icons from [Font Awesome](http://fontawesome.io/)
