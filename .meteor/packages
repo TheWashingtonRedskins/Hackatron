@@ -17,8 +17,6 @@ splendido:accounts-meld
 coffeescript
 meteorhacks:subs-manager
 fourseven:scss
-meteortoys:allthings
-insecure
 fortawesome:fontawesome
 service-configuration
 kevohagan:sweetalert
@@ -26,3 +24,4 @@ meteorhacks:fast-render
 momentjs:moment
 reywood:publish-composite
 http
+emgee:libphonenumber

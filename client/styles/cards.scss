@@ -408,10 +408,6 @@ $grey: #525252;
       border-bottom-left-radius: $cardBorderRadius;
       transition: width 0.3s;
       width: 80px;
-
-      //.card__face:hover & {
-        // width: 80px;
-      //}
     }
 
     &__price {
@@ -731,6 +727,7 @@ $grey: #525252;
     position: relative;
     margin-left: 20px;
     display: inline-block;
+    float: left;
 
     .card.req-active2 & {
       height: $cardHeight;

@@ -12,9 +12,42 @@
 //  -> Really starting to get hungry at this point.
 
 #requestsView {
+  height: calc(100% - 25px);
+  width: 100%;
+  position: relative;
+  padding-top: 25px;
 
-  .helpToggle {
+  .giveHelp {
+    margin-top: 25px;
+  }
+
+  .submitRequest {
+    color: #1a1a1a;
+    background-color: white;
+    min-height: 50px;
+    width: calc(100% - 60px);
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .typeform-widget {
+    width: 100%;
+    height: calc(100% + 5px);
+  }
+
+  .typContainer {
+    width: 100%;
+    height: calc(100% - 50px);
+    overflow: none;
+  }
+
+  .requestCardContainer {
+    -webkit-transition: height 0.8s;
+    -moz-transition: height 0.8s;
+    transition: height 0.8s;
+  }
+  .expandedContainer {
+    height: 280px;
   }
 }

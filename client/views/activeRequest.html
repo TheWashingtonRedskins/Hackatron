@@ -1,0 +1,121 @@
+<template name="activeActionButton">
+{{#if isMine}}
+<button type="button" class="card__request-btn" style="width:95%;margin-left:auto;margin-right:auto;display:block">
+  <span class="cancelBtn card__request-btn__text-1">Cancel Request</span>
+</button>
+{{/if}}
+</template>
+
+<template name="activeRequest">
+<div class="cardContainer" style="width:100%">
+  <section class="card theme-blue" data-color="00A0B0" style="width:100%;min-height:100%;margin:0">
+    <section class="card__part card__part-1">
+      <div class="card__part__inner">
+        <header class="card__header">
+          <span class="card__header__id">{{tagsFormatted}}</span>
+          <span class="card__header__price">#{{idShort}}</span>
+        </header>
+        <div class="card__stats">
+          <div class="card__stats__item card__stats__item--req">
+            <p class="card__stats__type">Created</p>
+            <span class="card__stats__value">{{timeAgo true}}</span>
+          </div>
+          <div class="card__stats__item card__stats__item--pledge">
+            {{#if bounty}}
+            <p class="card__stats__type">Bounty</p>
+            <span class="card__stats__value">{{bounty}}</span>
+            {{/if}}
+          </div>
+          <div class="card__stats__item card__stats__item--weight">
+            <p class="card__stats__type">Difficulty</p>
+            <span class="card__stats__value">{{reqDiff}}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="card__part card__part-2" style="top: 100px;height: calc(100% - 95px);">
+      <div class="card__part__side m--back">
+        <div class="card__face__colored-inner">
+          {{#each tags}}
+          <p>{{this}}</p>
+          {{/each}}
+        </div>
+        <div class="card__part__inner card__face">
+          <div class="card__face__colored-side">
+          </div>
+          <h3 class="card__face__price">{{card.price}}</h3>
+          <div class="card__face__from-to">
+            <p>{{description}}</p>
+          </div>
+          <div class="card__face__stats card__face__stats--req">
+            Created
+            <p>{{timeAgo true}}</p>
+          </div>
+          <div class="card__face__stats card__face__stats--pledge">
+            {{#if bounty}}
+            Bounty
+            <p>{{bounty}}</p>
+            {{/if}}
+          </div>
+          <div class="card__stats__difficulty card__face__stats card__face__stats--weight">
+            Difficulty
+            <p class="card__face__stats__weight">
+            <span>{{reqDiff}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card__part__side m--front" style="overflow-x:hidden;overflow-y:auto">
+        <div class="card__sender" style="display:block;width:100%">
+          <h4 class="card__sender__heading">Requester</h4>
+          <div class="card__sender__img-cont">
+            <div class="card__sender__img-cont__inner">
+              <img src="{{requestor.profile.avatar}}" class="card__sender__img" />
+            </div>
+          </div>
+          <div class="card__sender__name-and-rating">
+            <p class="card__sender__name">{{requestor.profile.name}}</p>
+          </div>
+        </div>
+        <div class="card__from-to" style="display:inline-block;width:100%;height: 45px;">
+          <div class="card__from-to__inner">
+            <div class="card__text card__text--left">
+              <p class="card__text__heading">Location</p>
+              <p class="card__text__middle">{{location}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="card__sender" style="width:100%;display:block"> <!-- has-responder -->
+          <h4 class="card__sender__heading">Responder</h4>
+          <div class="card__sender__img-cont">
+            <div class="card__sender__img-cont__inner">
+              {{#if responders.length}}
+              <img src="{{userAvatar responders}}" class="card__sender__img" />
+              {{else}}
+              <img src="/images/questionmark.jpg" class="card__sender__img" />
+              {{/if}}
+            </div>
+          </div>
+          <div class="card__sender__name-and-rating">
+            {{#if responders.length}}
+            <p class="card__sender__name">{{userName responders}}</p>
+            {{else}}
+            <p class="card__sender__name">Waiting for mentor...</p>
+            {{/if}}
+          </div>
+        </div>
+        <div class="card__description" style="width:100%;display:block;overflow: initial;">
+          <h4 class="card__description__heading">Description</h4>
+          {{description}}
+        </div>
+      </div>
+      <section class="card__part card__part-4">
+        <div class="card__part__side m--back"></div>
+        <div class="card__part__side m--front" style="padding:0">
+          {{> activeActionButton this}}
+        </div>
+      </section>
+    </section>
+  </section>
+</div>
+</template>

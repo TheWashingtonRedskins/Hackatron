@@ -1,6 +1,4 @@
 Accounts.onCreateUser (options, user)->
-  console.log options
-  console.log user
   user.profile = options.profile
   services = user.services
   if services.google?
@@ -15,4 +13,6 @@ Accounts.onCreateUser (options, user)->
       user.profile.name = services.github.name
     else
       user.profile.name = services.github.username
+  user.profile.typeformid = Random.id()
+  user.profile.typeform = generateTypeform user.profile.typeformid, user.profile.name
   user

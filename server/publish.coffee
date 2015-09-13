@@ -12,13 +12,17 @@
 #  -> People who can't use git (the shell in particular) are idiots.
 
 Meteor.publish "events", -> Events.find()
-Meteor.publishComposite "requests",
+Meteor.publishComposite "requests", (eveid)->
   find: ->
-    Requests.find()
+    uid = @userId
+    if eveid?
+      Requests.find({event: eveid, $or: [{state: 0}, {uid: uid}, {responders: uid}]})
+    else
+      Requests.find({$or: [{state: 0}, {uid: uid}, {responders: uid}]})
   children: [
     {
       find: (request)->
-        ids = _.clone request.responders
+        ids = _.clone(request.responders) || []
         ids.push request.uid
         Meteor.users.find {_id: {$in: ids}}, {fields: {profile: 1}}
     }

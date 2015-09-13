@@ -21,5 +21,6 @@ Template.events.helpers
 Template.eventButton.events
   "click .cta_button": ->
     Session.set("selectedEvent", @_id)
-    # logically redirect
+    Meteor.call "setCurrentEvent", @_id, =>
+      console.log "changed event to #{@_id}"
     Router.go "/"

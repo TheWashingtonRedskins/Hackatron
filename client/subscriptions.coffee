@@ -12,4 +12,6 @@
 
 # App startup subscriptions
 Meteor.startup ->
+  user = Meteor.user()
   Meteor.subscribe "events"
+  Meteor.subscribe "requests", Session.get("selectedEvent")

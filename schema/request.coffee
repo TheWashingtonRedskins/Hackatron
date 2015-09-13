@@ -11,6 +11,27 @@
 # -> We are currently waiting for pizza.
 
 RequestSchema = new SimpleSchema
+  # 0: Waiting for mentor
+  # 1: Waiting for resolution
+  # 2: Finished successfully
+  # 3: Canceled
+  state:
+    label: "State of the request."
+    type: Number
+    min: 0
+    max: 3
+    autoValue: ->
+      if @isInsert
+        return 0
+      else if @isUpsert
+        return { $setOnInsert: 0 }
+      else
+        @unset()
+      return
+  finished:
+    label: "Date request was finished/canceled."
+    optional: true
+    type: Date
   created:
     label: "Date request was created."
     type: Date
@@ -65,6 +86,10 @@ RequestSchema = new SimpleSchema
     type: String
     min: 10
     max: 140
+  phone:
+    label: "Phone number for text message updates."
+    type: String
+    optional: true
 
 @Requests = new Mongo.Collection "requests"
 Requests.attachSchema RequestSchema

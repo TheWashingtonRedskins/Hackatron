@@ -13,26 +13,20 @@
 Router.configure
   layoutTemplate: 'ApplicationLayout'
   waitOn: ->
-    return [Meteor.subscribe "events"]
+    return [Meteor.subscribe("events")]
 
 Router.onBeforeAction ->
-  unless currentEventValid()
-    return @render "events"
+  if Meteor.isClient
+    unless currentEventValid()
+      return @render "events"
   @next()
 
-###
 Router.onBeforeAction ->
+  return @next() if Meteor.isServer
   unless Meteor.userId()?
-    @render 'Login'
+    @render 'login'
   else
     @next()
-  return
-, {except: ['requests', '']}
-###
-
-#remove later
-Router.route '/login',
-  action: -> @render "login"
 
 # Check if the event still exists and if not redirect
 # usage: return if eventRedirect @
@@ -47,13 +41,38 @@ currentEventValid = ->
       return true
   if events.length is 1
     Session.set "selectedEvent", events[0]._id
+    Meteor.call "setCurrentEvent", events[0]._id, ->
+      console.log "Changed current event to #{events[0]._id}"
     return true
   Session.set "selectedEvent", null
   false
 
 Router.route '/',
   action: ->
-    @render "requests"
+    req = getActiveRequest()
+    if req?
+      @redirect "/request/#{req._id}"
+    else
+      @render "requests"
   waitOn: ->
-    Meteor.subscribe "requests"
+    if Meteor.isClient
+      Meteor.subscribe "requests", Session.get("selectedEvent")
+    else
+      Meteor.subscribe "requests", null
   fastRender: true
+
+Router.route '/request/:reqid',
+  fastRender: true
+  waitOn: ->
+    if Meteor.isClient
+      Meteor.subscribe "requests", Session.get("selectedEvent")
+    else
+      Meteor.subscribe "requests", null
+  action: ->
+    req = getActiveRequest()
+    unless req?
+      @redirect "/"
+    else
+      @render "activeRequest",
+        data: ->
+          req

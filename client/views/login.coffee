@@ -11,6 +11,8 @@
 #  -> Gabe Newell is heavy breathing cuz he's nervous duh
 
 Template.login.helpers
+  loggingIn: ->
+    Meteor.loggingIn()
   "services": ->
     [
       {

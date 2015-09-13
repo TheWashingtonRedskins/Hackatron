@@ -15,16 +15,16 @@ request help or help others with their projects.
 
 Components (priority order):
 
-  - [ ] Request help
-  - [ ] View help requests
-  - [ ] Respond to help request / request lifecycle
-  - [ ] Store request history on an account / SSO
+  - [x] Request help
+  - [x] View help requests
+  - [x] Respond to help request / request lifecycle
+  - [x] Store request history on an account / SSO
   - [ ] Point/reward system
   - [ ] Animations / "sexiness factor" pass
   - [ ] Video display via odroid / RPI
   - [ ] Competitive elements (leaderboard, etc)
   - [ ] Integration with devpost / SSO / project "Acknoledgements" list
-  - [ ] Testing
+  - [ ] Testing / unit tests
   - [ ] Admin panel
 
 UI Design Goals
@@ -32,3 +32,4 @@ UI Design Goals
 
 Clean, minimalistic, easy to use. No page reloads. Responsive. Any size
 screen.
+
