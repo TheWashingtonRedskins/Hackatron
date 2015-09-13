@@ -156,7 +156,7 @@ Router.route '/api/tfhook', ->
       console.log "Sending hello SMS to #{req.phone}"
       twilio.sendSMS
         to: req.phone
-        body: "Hey #{user.profile.name}! Your question, \"#{req.description}\ about #{req.tags.join(", ")} has been submitted. We'll let you know when a mentor is coming."
+        body: "Hey #{user.profile.name}! Your question, \"#{req.description}\" about #{req.tags.join(", ")} has been submitted. We'll let you know when a mentor is coming."
   else
     console.log "Invalid request: #{JSON.stringify body}"
 
