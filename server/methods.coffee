@@ -1,4 +1,21 @@
 Meteor.methods
+  "completeRequest": ->
+    uid = @userId
+    if !uid?
+      throw new Meteor.Error "not-logged-in", "You are not signed in."
+    req = getActiveRequest(uid)
+    if !req?
+      throw new Meteor.Error "cant-find", "Cannot find a active request."
+    if req.state isnt 1
+      throw new Meteor.Error "cant-cancel", "You cannot complete yet."
+    unless uid in req.responders
+      throw new Meteor.Error "cant-cancel", "You are not a mentor."
+    Requests.update {_id: req._id}, {$set: {state: 2}}, {validate: false}
+    if req.phone and req.phone.length > 2 and twilio?
+      console.log "Sending completed SMS to #{req.phone}"
+      twilio.sendSMS
+        to: req.phone
+        body: "Your mentor has marked your request as complete. Have a great hackathon!"
   "cancelRequest": ->
     uid = @userId
     if !uid?

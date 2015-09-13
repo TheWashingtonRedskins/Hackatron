@@ -63,6 +63,13 @@ Template.activeActionButton.helpers
     @uid is uid
 
 Template.activeActionButton.events
+  "click .completeBtn": ->
+    Meteor.call "completeRequest", (err)->
+      if err?
+        sweetAlert
+          title: "Can't Complete"
+          text: err.reason
+          type: "error"
   "click .cancelBtn": ->
     Meteor.call "cancelRequest", (err)->
       if err?
