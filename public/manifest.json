@@ -38,5 +38,6 @@
 			"density": "4.0"
 		}
 	],
-	"start_url": "https:\/\/hackitronapp.co"
+	"start_url": "https:\/\/hackatronapp.co",
+	"display": "standalone"
 }
