@@ -16,6 +16,8 @@ Template.requests.helpers
     Requests.find()
   "giveHelp": ->
     Session.get "giveHelp"
+  "hasRequests": ->
+    Requests.find().count() > 0
 
 Template.requests.events
   "click .switch-button .left": ->
