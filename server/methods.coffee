@@ -5,9 +5,7 @@ Meteor.methods
       throw new Meteor.Error "not-logged-in", "You are not signed in."
     req = getActiveRequest(uid)
     if !req?
-      throw new Meteor.Error "cant-find", "Cannot find a active request."
-    if req.state isnt 1
-      throw new Meteor.Error "cant-cancel", "You cannot complete yet."
+      throw new Meteor.Error "cant-cancel", "Can't find that request."
     unless uid in req.responders
       throw new Meteor.Error "cant-cancel", "You are not a mentor."
     Requests.update {_id: req._id}, {$set: {state: 2}}, {validate: false}
