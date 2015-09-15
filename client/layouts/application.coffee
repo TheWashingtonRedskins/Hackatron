@@ -1,3 +1,3 @@
 Template.ApplicationLayout.events
-  "click .heartMhacks": ->
-    window.open("http://devpost.com/software/hackatron-63v0di", "_blank")
+  "click .toGithub": ->
+    window.open("https://github.com/TheWashingtonRedskins/Hackatron", "_blank")
