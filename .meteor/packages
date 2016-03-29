@@ -24,7 +24,6 @@ momentjs:moment
 reywood:publish-composite
 http
 emgee:libphonenumber
-dispatch:twilio
 meteor-base
 mobile-experience
 mongo
@@ -40,3 +39,4 @@ spacebars
 check
 standard-minifier-css
 standard-minifier-js
+ecmascript

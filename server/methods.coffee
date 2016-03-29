@@ -11,8 +11,9 @@ Meteor.methods
     Requests.update {_id: req._id}, {$set: {state: 2}}, {validate: false}
     if req.phone and req.phone.length > 2 and twilio?
       console.log "Sending completed SMS to #{req.phone}"
-      twilio.sendSMS
+      twilio.sendMessage
         to: req.phone
+        from: twilio_from
         body: "Your mentor has marked your request as complete. Have a great hackathon!"
   "cancelRequest": ->
     uid = @userId
@@ -26,8 +27,9 @@ Meteor.methods
     Requests.update {_id: req._id}, {$set: {state: 3}}, {validate: false}
     if req.phone and req.phone.length > 2 and twilio?
       console.log "Sending canceled SMS to #{req.phone}"
-      twilio.sendSMS
+      twilio.sendMessage
         to: req.phone
+        from: twilio_from
         body: "You've canceled your request. Have a great hackathon!"
   "setCurrentEvent": (eid)->
     uid = @userId
@@ -57,6 +59,7 @@ Meteor.methods
     Requests.update {_id: rid}, {$set: {state: 1}, $push: {responders: uid}}
     if req.phone and req.phone.length > 2 and twilio?
       console.log "Sending accepted SMS to #{req.phone}"
-      twilio.sendSMS
+      twilio.sendMessage
         to: req.phone
+        from: twilio_from
         body: "#{user.profile.name} is on the way to answer your question!"

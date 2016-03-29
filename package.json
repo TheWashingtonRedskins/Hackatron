@@ -1,0 +1,16 @@
+{
+  "name": "hackatron",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheWashingtonRedskins/Hackatron.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheWashingtonRedskins/Hackatron/issues"
+  },
+  "homepage": "https://github.com/TheWashingtonRedskins/Hackatron#readme",
+  "dependencies": {
+    "twilio": "^2.9.0"
+  }
+}
