@@ -15,6 +15,9 @@ Meteor.methods
         to: req.phone
         from: twilio_from
         body: "Your mentor has marked your request as complete. Have a great hackathon!"
+      , (err, respData) ->
+        if err?
+          console.log "Twilio error #{err}"
   "cancelRequest": ->
     uid = @userId
     if !uid?
@@ -31,6 +34,9 @@ Meteor.methods
         to: req.phone
         from: twilio_from
         body: "You've canceled your request. Have a great hackathon!"
+      , (err, respData) ->
+        if err?
+          console.log "Twilio error #{err}"
   "setCurrentEvent": (eid)->
     uid = @userId
     if !uid?
@@ -63,3 +69,6 @@ Meteor.methods
         to: req.phone
         from: twilio_from
         body: "#{user.profile.name} is on the way to answer your question!"
+      , (err, respData) ->
+        if err?
+          console.log "Twilio error #{err}"
