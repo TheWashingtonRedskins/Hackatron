@@ -188,7 +188,7 @@ Router.route '/api/tfhook', ->
         body: "Hey #{user.profile.name}! Your question, \"#{req.description}\" about #{req.tags.join(", ")} has been submitted. We'll let you know when a mentor is coming."
       , (err, respData) ->
         if err?
-          console.log "Twilio error #{err}"
+          console.log err
   else
     console.log "Invalid request: #{JSON.stringify body}"
 
