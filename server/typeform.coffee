@@ -48,10 +48,34 @@ unless process.env.TYPEFORM_API?
   console.log "Specify TYPEFORM_API in the environment."
   process.exit 1
 
+TypeformDesigns = new Mongo.Collection "typeformDesigns"
+
+tfdesign = {}
+Meteor.startup ->
+  # Check if the typeform design exists
+  tfdesign = TypeformDesigns.findOne({_id: "user"})
+  unless tfdesign?
+    console.log "Registering design for the user form with TypeForm..."
+    tkey = process.env.TYPEFORM_API
+    des =
+      colors:
+        question: "#FFFFFF"
+        button: "#FFFFFF"
+        answer: "#FFFFFF"
+        background: "#1A1A1A"
+      font: "Open Sans"
+    res = HTTP.post "https://api.typeform.io/v0.4/designs", {headers: {"X-API-TOKEN": tkey, "Content-Type": "application/json"}, data: des}
+    degid = res.data.id
+    console.log "Design registered with ID #{degid}"
+    tfdesign =
+      design_id: degid
+      _id: "user"
+    TypeformDesigns.insert tfdesign
+
 @generateTypeform = (uid, name)->
   form =
     title: "Request help"
-    design_id: "XVkMvKCgLM"
+    design_id: tfdesign.design_id
     webhook_submit_url: rurl+"/api/tfhook"
     tags: [uid]
     fields: [
