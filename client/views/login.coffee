@@ -40,6 +40,6 @@ Template.loginServiceButton.events
     @login (err)->
       return unless err?
       sweetAlert
-        title: "Login Failure"
+        title: "Log In Failure"
         text: err.message
         type: "error"
