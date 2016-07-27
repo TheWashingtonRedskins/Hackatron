@@ -21,7 +21,7 @@ spec:
           value: mongodb://mongo:27017/local?authSource=hackatron
         - name: ROOT_URL
           value: http://hackatronapp.co/
-        image: gcr.io/faceit-ltd/hackatron:latest
+        image: paralin/hackatron:latest
         imagePullPolicy: Always
         name: hackatron
         ports:
